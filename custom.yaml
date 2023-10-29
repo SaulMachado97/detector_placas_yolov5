@@ -1,0 +1,13 @@
+#Este archivo se sube a Google Colab para indicarle que va usar nuestro dataset custom
+#path: ../datasets/coco128  # dataset root dir
+train: /content/data/images/train  # train images (relative to 'path') 128 images
+val: /content/data/images/val  # val images (relative to 'path') 128 images
+test:  # test images (optional)
+
+# Classes
+names:
+  0: placa
+
+
+# Download script/URL (optional)
+download: https://ultralytics.com/assets/coco128.zip
