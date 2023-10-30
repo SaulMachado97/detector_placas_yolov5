@@ -23,5 +23,7 @@ Por el momento esta la ruta de mi PC Saul
 ### Ejecutar detector
 > python detect.py
 
-NOTA: Si les da error en la linea 14, poner
-Windows => cap = cv2.VideoCapture(1)#Linux - Mac => cap = cv2.VideoCapture(0)
+### NOTA: 
+Si les da error en la linea 14, poner
+Windows => cap = cv2.VideoCapture(1)
+Linux - Mac => cap = cv2.VideoCapture(0)
