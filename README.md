@@ -16,6 +16,9 @@ https://drive.google.com/file/d/1I1xj1Ss09in01eM7Vh8WSJDUaVfovyJD/view?usp=shari
 ### Instalar requerimientos
 > pip install -r https://raw.githubusercontent.com/ultralytics/yolov5/master/requirements.txt
 
+### Instalar EasyOCR
+> pip install easyocr
+
 ojo deben corregir la linea 8
 model = torch.hub.load('ultralytics/yolov5', 'custom', path='RUTA_ABSOLUTA')
 Por el momento esta la ruta de mi PC Saul
