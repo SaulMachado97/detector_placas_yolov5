@@ -68,11 +68,11 @@ def draw_detections(frame, detections, class_colors, reader, save_path, confiden
 
             placaDetect[class_name] = {}
 
-            if prob >= 0.7:
+            if prob >= 0.65:
                 
                 placaDetect[class_name]['texto'] = str(text)
                 text = class_name + ": " + str(text)
-                cv2.putText(frame_with_detections, text, (x_min, y_min - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, class_colors[class_name], 2)
+                cv2.putText(frame_with_detections, text, (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, class_colors[class_name], 2)
 
             print(placaDetect)
 
@@ -88,7 +88,7 @@ def draw_detections(frame, detections, class_colors, reader, save_path, confiden
                         plate_image = frame[y_min:y_max, x_min:x_max]
 
                         # Guardar la imagen de la placa en el directorio especificado
-                        img_path = save_path + "plate_" + str(licensePlateValue) + ".png"
+                        img_path = save_path + "plate_" + str(licensePlateValue) + "_out.png"
                         cv2.imwrite(img_path, plate_image)
 
                         #Despues de guardar la imagen, lo que hacemos es pasarla a base64
@@ -100,8 +100,7 @@ def draw_detections(frame, detections, class_colors, reader, save_path, confiden
 
                         print("ENVIAMOS A LA API la placa: " , licensePlateValue)
                         data = {
-                            "plate": licensePlateValue,
-                            "image": base64_string
+                            "plate": licensePlateValue
                         }
 
                         json_path = "/Users/saulmachado/Projects/Vision Por Computadora/Detector de Placas YOLOv5/asset/json/" + licensePlateValue + ".json"
@@ -111,13 +110,13 @@ def draw_detections(frame, detections, class_colors, reader, save_path, confiden
                         # Realiza una única llamada a la API para enviar los valores detectados
                         try:
                             time.sleep(2)
-                            api_url = "https://0177-2800-484-ee0d-9800-19a4-f91b-282f-4309.ngrok.io" + "/api/services"  # Reemplaza con la URL de tu API
+                            api_url = "https://easy-in-easy-out-app-f99f5da14d83.herokuapp.com" + "/api/services/exit"  # Reemplaza con la URL de tu API
                             response = requests.post(api_url, json=data)
 
                             if response.status_code // 100 == 2:
                                 print("Solicitud exitosa")
                                 print(response.json())
-                                time.sleep(0.5)
+                                time.sleep(1)
 
 
                         except requests.exceptions.RequestException as e:
